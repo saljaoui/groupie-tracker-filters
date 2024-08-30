@@ -191,8 +191,14 @@ a {
 } */
 
 .checkbox {
+  display: flex;
+  gap: 4px;
   background-color: #d3ad7f;
   font-size: 15px;
+  color: var(--text-color);
+}
+.checkbox h2{
+font-size: 14px;
 }
 
 .names {
