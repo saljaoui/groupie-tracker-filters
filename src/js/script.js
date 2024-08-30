@@ -31,3 +31,10 @@ loadLess.onclick = () => {
         loadLess.style.display = 'none'
     }
 };
+
+document.getElementById('from-year').addEventListener('input', function() {
+    document.getElementById('from-yearValue').textContent = this.value;
+  });
+  document.getElementById('to-year').addEventListener('input', function() {
+    document.getElementById('to-yearValue').textContent = this.value;
+  });
