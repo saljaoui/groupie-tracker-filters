@@ -61,6 +61,7 @@ a {
 .logoSA {
   height: 2rem;
 }
+
 /* start style Navigations */
 .navbar a {
   margin: 10px;
@@ -75,6 +76,7 @@ a {
   border-bottom: 2px solid var(--text-color);
   padding-bottom: 2px;
 }
+
 /* End Navigations */
 /* Home Styles */
 .home {
@@ -97,6 +99,7 @@ a {
   object-fit: cover;
   z-index: 2;
 }
+
 /* End Home */
 /* section */
 .section {
@@ -178,6 +181,20 @@ a {
 }
 
 /* end cards */
+/* filters */
+.artists label {
+  color: var(--text-color);
+}
+/* .artists input {
+  color: var(--text-color);
+  font-size: 20px;
+} */
+
+.checkbox {
+  background-color: #d3ad7f;
+  font-size: 15px;
+}
+
 .names {
   font-size: 1.7rem;
   margin-top: 21px;
@@ -207,6 +224,7 @@ a {
   color: var(--text-color);
   margin: 0 10px;
 }
+
 /*  end Contact */
 #text {
   font-size: 9rem;
@@ -228,6 +246,7 @@ a {
   z-index: 3;
   position: relative;
 }
+
 /* start  container */
 .container {
   color: var(--text-color);
