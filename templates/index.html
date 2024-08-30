@@ -56,44 +56,40 @@
 
     <div class="section">
         <div class="filters-artist">
-            <h2 style="color: aliceblue;" >hi</h2>
-        
-        <form id="filterForm" action="/filters/" method="post">
-            <div class="checkbox">
-                <h2>N Members:</h2>
-                <input type="checkbox" name="members" value="1">
-                <label for="1">1</label>
-                <input type="checkbox" name="members" value="2">
-                <label for="2">2</label>
-                <input type="checkbox" name="members" value="3">
-                <label for="3">3</label>
-                <input type="checkbox" name="members" value="4">
-                <label for="4">4</label>
-                <input type="checkbox" name="members" value="5">
-                <label for="5">5</label>
-                <input type="checkbox" name="members" value="6">
-                <label for="6">6</label>
-                <input type="checkbox" name="members" value="7">
-                <label for="7">7</label>
-            </div>
-            <div class="checkbox">
-                <label for="year">from Date (between 1957 and 2025):</label>
-                <input type="range" id="from-year" name="from-year" value="1957" min="1957" max="2025">
-                <span id="from-yearValue">1957</span>
+            <h2 style="color: aliceblue;">hi</h2>
 
-                <label for="year">| to Date (between 1957 and 2025):</label>
-                <input type="range" id="to-year" name="to-year" value="1957" min="1957" max="2025">
-                <span id="to-yearValue">1957</span>
-            </div>
-            <button type="submit">Apply Filters</button>
-        </form>
-    </div>
+            <form id="filterForm" action="/filters/#artists" method="post">
+                <div class="checkbox">
+                    <h2>N Members:</h2>
+                    <input type="checkbox" name="members" value="1">
+                    <label for="1">1</label>
+                    <input type="checkbox" name="members" value="2">
+                    <label for="2">2</label>
+                    <input type="checkbox" name="members" value="3">
+                    <label for="3">3</label>
+                    <input type="checkbox" name="members" value="4">
+                    <label for="4">4</label>
+                    <input type="checkbox" name="members" value="5">
+                    <label for="5">5</label>
+                    <input type="checkbox" name="members" value="6">
+                    <label for="6">6</label>
+                    <input type="checkbox" name="members" value="7">
+                    <label for="7">7</label>
+                </div>
+                <div class="checkbox">
+                    <label for="year">from Date (between 1957 and 2025):</label>
+                    <input type="range" id="from-year" name="from-year" value="1957" min="1957" max="2025">
+                    <span id="from-yearValue">1957</span>
+
+                    <label for="year">| to Date (between 1957 and 2025):</label>
+                    <input type="range" id="to-year" name="to-year" value="2025" min="1957" max="2025">
+                    <span id="to-yearValue">2025</span>
+                </div>
+                <button type="submit">Apply Filters</button>
+            </form>
+        </div>
         <form action="/" method="post">
             <section class="artists" id="artists">
-                
-
-
-
                 <div class="cards">
                     <h2 class="titleart">Artists</h2>
                     {{range .}}
