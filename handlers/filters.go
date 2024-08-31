@@ -2,6 +2,7 @@ package Groupie_tracker
 
 import (
 	"bytes"
+	"encoding/json"
 	"fmt"
 	"net/http"
 	"strconv"
@@ -23,39 +24,30 @@ func Filters(w http.ResponseWriter, r *http.Request) {
 	members := r.Form["members"]
 	// Location-Filter
 	LocationFilteer := r.FormValue("Location-Filter")
-	
 
 	artisData, err := fromToYear(fromYear, toYear)
 	if err != nil {
 		HandleErrors(w, errors.InternalError, errors.DescriptionInternalError, http.StatusInternalServerError)
 		return
 	}
-	artisData , err = Members(members, artisData)
+	artisData, err = Members(members, artisData)
 	if err != nil {
 		HandleErrors(w, errors.InternalError, errors.DescriptionInternalError, http.StatusInternalServerError)
 		return
 	}
-	artisData , err = LocationFilter(LocationFilteer, artisData)
+	artisData, err = LocationFilter(LocationFilteer, artisData)
 	if err != nil {
 		HandleErrors(w, errors.InternalError, errors.DescriptionInternalError, http.StatusInternalServerError)
 		return
 	}
 
+	// allLocation, err := locationFilter()
+	// if err != nil {
+	// 	HandleErrors(w, errors.BadRequest, errors.DescriptionBadRequest, http.StatusBadRequest)
+	// 	return
+	// }
 
-
-
-
-	allLocation , err := locationFilter()
-	if err != nil {
-		HandleErrors(w, errors.BadRequest, errors.DescriptionBadRequest, http.StatusBadRequest)
-		return
-	}
-	
-
-	artisData[0].LocationFilters = allLocation
-
-
-
+	// artisData[0].LocationFilters = allLocation
 
 	var buf bytes.Buffer
 	if err := tmpl.ExecuteTemplate(&buf, "index.html", artisData); err != nil {
@@ -122,9 +114,28 @@ func Members(members []string, artisData []JsonData) ([]JsonData, error) {
 }
 
 func LocationFilter(LocationFilter string, artisData []JsonData) ([]JsonData, error) {
+var location Location
+var result []JsonData
 	for _, data := range artisData {
-			fmt.Println(data.Locations)
+
+		resp, err := http.Get(data.Locations)
+		if err != nil {
+			return nil, fmt.Errorf("invalid location: %v", err)
+		}
+		err = json.NewDecoder(resp.Body).Decode(&location)
+		if err != nil {
+			return nil, fmt.Errorf("no results the error is: %s", err)
+		}
+		// fmt.Println(location.Location)
+			for _, f := range location.Location {
+				if LocationFilter == f {
+					result = append(result, data)
+				}
+
+			}
+		
+
 	}
 
-	return artisData, nil
+	return result, nil
 }
