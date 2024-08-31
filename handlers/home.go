@@ -2,9 +2,11 @@ package Groupie_tracker
 
 import (
 	"bytes"
+	"fmt"
 	"net/http"
 	"os"
 	"path/filepath"
+	"strings"
 	"text/template"
 )
 
@@ -41,14 +43,28 @@ func GetDataFromJson(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	file, errw := os.ReadFile("s.json")
+	if errw != nil {
+		fmt.Println(errw)
+		return
+	}
+	files := strings.Split(string(file), ",")
+	// fmt.Println(files)
+	artisData[0].LocationFilters = files
+	
+	// artisData[0].Locations[0] = string(file)
+	// fmt.Println(artisData[0].Locations)
+
 	var buf bytes.Buffer
 	errr := tmpl.ExecuteTemplate(&buf, "index.html", artisData)
 	if errr != nil {
+		fmt.Println(errr)
 		HandleErrors(w, errors.InternalError, errors.DescriptionInternalError, http.StatusInternalServerError)
 		return
 	}
 	_, erro := buf.WriteTo(w)
 	if erro != nil {
+		fmt.Println(erro)
 		HandleErrors(w, errors.InternalError, errors.DescriptionInternalError, http.StatusInternalServerError)
 		return
 	}

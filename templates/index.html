@@ -85,6 +85,20 @@
                     <input type="range" id="to-year" name="to-year" value="2025" min="1957" max="2025">
                     <span id="to-yearValue">2025</span>
                 </div>
+                <div class="checkbox">
+                    <select name="" id="">
+
+                    
+                    {{range $index, $item := .}}
+                    {{if eq $index 0}}
+
+                    {{range .LocationFilters}}
+                    <option value="">{{ . }}</option>
+                    {{end}}
+                    {{end}}
+                    {{end}}
+                </select>
+                </div>
                 <button type="submit">Apply Filters</button>
             </form>
         </div>

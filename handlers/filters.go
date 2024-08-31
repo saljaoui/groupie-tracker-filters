@@ -12,16 +12,11 @@ func Filters(w http.ResponseWriter, r *http.Request) {
 		HandleErrors(w, errors.BadRequest, errors.DescriptionBadRequest, http.StatusBadRequest)
 		return
 	}
-	
+
 	if r.URL.Path != "/filters/" {
 		HandleErrors(w, errors.BadRequest, errors.DescriptionBadRequest, http.StatusBadRequest)
 		return
 	}
-
-	// if err := r.ParseForm(); err != nil {
-	// 	handleError(w, "Failed to parse form", http.StatusBadRequest)
-	// 	return
-	// }
 
 	fromYear := r.FormValue("from-year")
 	toYear := r.FormValue("to-year")

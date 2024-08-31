@@ -11,6 +11,7 @@ type JsonData struct {
 	Locations    string   `json:"locations"`
 	ConcertDates string   `json:"concertDates"`
 	Relations    string   `json:"relations"`
+	LocationFilters []string 
 }
 
 // struct for artist jeson data
