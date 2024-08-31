@@ -42,18 +42,13 @@ func GetDataFromJson(w http.ResponseWriter, r *http.Request) {
 		HandleErrors(w, errors.BadRequest, errors.DescriptionBadRequest, http.StatusBadRequest)
 		return
 	}
-
-	file, errw := os.ReadFile("s.json")
-	if errw != nil {
-		fmt.Println(errw)
+	allLocation , err := locationFilter()
+	if err != nil {
+		HandleErrors(w, errors.BadRequest, errors.DescriptionBadRequest, http.StatusBadRequest)
 		return
 	}
-	files := strings.Split(string(file), ",")
-	// fmt.Println(files)
-	artisData[0].LocationFilters = files
-	
-	// artisData[0].Locations[0] = string(file)
-	// fmt.Println(artisData[0].Locations)
+
+	artisData[0].LocationFilters = allLocation
 
 	var buf bytes.Buffer
 	errr := tmpl.ExecuteTemplate(&buf, "index.html", artisData)
@@ -68,6 +63,18 @@ func GetDataFromJson(w http.ResponseWriter, r *http.Request) {
 		HandleErrors(w, errors.InternalError, errors.DescriptionInternalError, http.StatusInternalServerError)
 		return
 	}
+}
+
+func locationFilter() ([]string, error) {
+	file, errw := os.ReadFile("location.txt")
+	if errw != nil {
+		return nil , fmt.Errorf("erro from reading file : %w",errw)
+	}
+	file = []byte(strings.ReplaceAll(string(file) , `"` , ""))
+	files := strings.Split(string(file), ",")
+	
+return files ,  nil
+	
 }
 
 // This function is responsible for handling the individual artist's information page.

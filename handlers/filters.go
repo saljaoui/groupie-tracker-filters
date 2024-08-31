@@ -21,6 +21,9 @@ func Filters(w http.ResponseWriter, r *http.Request) {
 	fromYear := r.FormValue("from-year")
 	toYear := r.FormValue("to-year")
 	members := r.Form["members"]
+	// Location-Filter
+	LocationFilteer := r.FormValue("Location-Filter")
+	
 
 	artisData, err := fromToYear(fromYear, toYear)
 	if err != nil {
@@ -32,6 +35,24 @@ func Filters(w http.ResponseWriter, r *http.Request) {
 		HandleErrors(w, errors.InternalError, errors.DescriptionInternalError, http.StatusInternalServerError)
 		return
 	}
+	artisData , err = LocationFilter(LocationFilteer, artisData)
+	if err != nil {
+		HandleErrors(w, errors.InternalError, errors.DescriptionInternalError, http.StatusInternalServerError)
+		return
+	}
+
+
+
+
+
+	allLocation , err := locationFilter()
+	if err != nil {
+		HandleErrors(w, errors.BadRequest, errors.DescriptionBadRequest, http.StatusBadRequest)
+		return
+	}
+	
+
+	artisData[0].LocationFilters = allLocation
 
 
 
@@ -98,4 +119,12 @@ func Members(members []string, artisData []JsonData) ([]JsonData, error) {
 	}
 
 	return result, nil
+}
+
+func LocationFilter(LocationFilter string, artisData []JsonData) ([]JsonData, error) {
+	for _, data := range artisData {
+			fmt.Println(data.Locations)
+	}
+
+	return artisData, nil
 }

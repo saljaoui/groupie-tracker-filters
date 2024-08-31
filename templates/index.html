@@ -86,14 +86,14 @@
                     <span id="to-yearValue">2025</span>
                 </div>
                 <div class="checkbox">
-                    <select name="" id="">
+                    <select name="Location-Filter" id="">
 
-                    
+                        <option value="" >slesct location</option>
                     {{range $index, $item := .}}
                     {{if eq $index 0}}
 
                     {{range .LocationFilters}}
-                    <option value="">{{ . }}</option>
+                    <option value="{{ . }}">{{ . }}</option>
                     {{end}}
                     {{end}}
                     {{end}}
