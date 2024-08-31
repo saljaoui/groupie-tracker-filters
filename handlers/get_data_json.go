@@ -25,10 +25,11 @@ func init() {
 
 // This function is responsible for handling the root path ("/") of the application.
 func GetDataFromJson(w http.ResponseWriter, r *http.Request) {
-	// if r.Method != http.MethodGet {
-	// 	HandleErrors(w, errors.MethodNotAllowed, errors.DescriptionMethodNotAllowed, http.StatusMethodNotAllowed)
-	// 	return
-	// }
+	if r.Method != http.MethodGet {
+		HandleErrors(w, errors.MethodNotAllowed, errors.DescriptionMethodNotAllowed, http.StatusMethodNotAllowed)
+		return
+	}
+
 	if r.URL.Path != "/" {
 		HandleErrors(w, errors.NotFound, errors.DescriptionNotFound, http.StatusNotFound)
 		return
@@ -39,9 +40,10 @@ func GetDataFromJson(w http.ResponseWriter, r *http.Request) {
 		HandleErrors(w, errors.BadRequest, errors.DescriptionBadRequest, http.StatusBadRequest)
 		return
 	}
+
 	var buf bytes.Buffer
-	err := tmpl.ExecuteTemplate(&buf, "index.html", artisData)
-	if err != nil {
+	errr := tmpl.ExecuteTemplate(&buf, "index.html", artisData)
+	if errr != nil {
 		HandleErrors(w, errors.InternalError, errors.DescriptionInternalError, http.StatusInternalServerError)
 		return
 	}
