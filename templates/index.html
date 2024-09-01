@@ -16,24 +16,32 @@
 
 <body>
 
-        <header class="header">
+    <header class="header">
 
-            <img src="styles/img/soufian_icon.png" alt class="logoSA">
+        <img src="styles/img/soufian_icon.png" alt class="logoSA">
 
-            <nav class="navbar">
-                <a href="#home">home</a>
-                <a href="#about">about</a>
-                <a href="#artists">artists</a>
-                <a href="#contact">contcat</a>
+        <nav class="navbar">
+            <a href="#home">home</a>
+            <a href="#about">about</a>
+            <a href="#artists">artists</a>
+            <a href="#contact">contcat</a>
 
-            </nav>
-            <div class="icons">
-            </div>
-        </header>
-        <div class="filters-artist">
-            <h2 style="color: aliceblue;">hi</h2>
+        </nav>
+        <div class="icons">
+        </div>
+    </header>
+    <div class="filters-artist">
+        <div class="content-filter">
+
+            
+
+
+
             <form id="filterForm" action="/filters/#artists" method="get">
-                <div class="checkbox">
+                <div>
+                    <h2 style="color: aliceblue;">hi</h2>
+                </div>
+                <div>
                     <h2>N Members:</h2>
                     <input type="checkbox" name="members" value="1">
                     <label for="1">1</label>
@@ -52,8 +60,7 @@
                     <input type="checkbox" name="members" value="8">
                     <label for="8">8</label>
                 </div>
-
-                <div class="checkbox">
+                <div>
                     <label for="year">from Date (between 1957 and 2025):</label>
                     <input type="range" id="from-year" name="from-year" value="1957" min="1957" max="2025">
                     <span id="from-yearValue">1957</span>
@@ -61,9 +68,18 @@
                     <label for="year">| to Date (between 1957 and 2025):</label>
                     <input type="range" id="to-year" name="to-year" value="2025" min="1957" max="2025">
                     <span id="to-yearValue">2025</span>
+
                 </div>
 
-                <div class="checkbox">
+                <div>
+                    <label for="from-first-album">from album:</label>
+                    <input type="date" name="from-first-album">
+
+                    <label for="to-first-album">to album:</label>
+                    <input type="date" name="to-first-album">
+                </div>
+
+                <div>
                     <select name="Location-Filter" id="">
 
                         <option value="">slesct location</option>
@@ -73,19 +89,13 @@
                         {{end}}
                         {{end}}
                     </select>
+
                 </div>
 
-                <div class="checkbox">
-                    <label for="from-first-album">from album:</label>
-                    <input type="date" name="from-first-album">
-
-                    <label for="to-first-album">to album:</label>
-                    <input type="date" name="to-first-album">
-                </div>
-
-                <button type="submit" id="filters">Apply Filters</button>
+                <button type="submit">Apply Filters</button>
             </form>
         </div>
+    </div>
 
     <section class="home" id="home">
         <img src="https://i.ibb.co/Hdt5MKg/back1.png" alt="s" id="imag" class="background-image">

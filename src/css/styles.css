@@ -190,13 +190,13 @@ a {
   font-size: 20px;
 } */
 
-.checkbox {
+/* .checkbox {
   display: flex;
   gap: 4px;
   background-color: #d3ad7f;
   font-size: 15px;
   color: var(--text-color);
-}
+} */
 .checkbox h2{
 font-size: 14px;
 }
@@ -392,12 +392,18 @@ font-size: 14px;
   }
 }
 
-#filterForm {
-  margin-top: 44px;
+.filters-artist {
+
+  margin-top: 65px;
   position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  width: 100%;
+  width: 90%;
   z-index: 101;
+  background-color: transparent;
+  backdrop-filter: blur(17px);
+  border: 2px solid var(--header-border-color);
+  color: var(--text-color);
+  margin-left: 5%;
+}
+.content-filter {
+  display: flex;
 }
