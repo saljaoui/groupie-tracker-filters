@@ -403,6 +403,8 @@ font-size: 14px;
   border: 2px solid var(--header-border-color);
   color: var(--text-color);
   margin-left: 5%;
+  border-radius: 10px;
+  padding: 10px 22px 22px 22px;
 }
 .content-filter {
   display: flex;
