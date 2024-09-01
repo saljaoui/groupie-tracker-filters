@@ -108,8 +108,8 @@
                     <label for="to-first-album">to album:</label>
                     <input type="date" name="to-first-album">
                 </div>
-                
-                <button type="submit">Apply Filters</button>
+
+                <button type="submit" id="filters" >Apply Filters</button>
             </form>
         </div>
         <form action="/" method="post">
@@ -117,14 +117,16 @@
                 <div class="cards">
                     <h2 class="titleart">Artists</h2>
                     {{range .}}
-                    <div class="card">
-                        <a href="/Artist/{{.Id}}" class="card-link">
-                            <div class="blob"></div>
-                            <img class="img" src="{{.Image}}">
-                            <h2 class="names">{{.Name}}</h2>
-                        </a>
-                    </div>
+                    {{if .Name}} <!-- Check if .Name is not empty -->
+                        <div class="card">
+                            <a href="/Artist/{{.Id}}" class="card-link">
+                                <div class="blob"></div>
+                                <img class="img" src="{{.Image}}">
+                                <h2 class="names">{{.Name}}</h2>
+                            </a>
+                        </div>
                     {{end}}
+                {{end}}
                 </div>
                 <div id="load-more">Load more &gt;</div>
                 <div id="Load-less">Load less &lt;</div>

@@ -67,12 +67,16 @@ func Filters(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	// allLocation, err := locationFilter()
-	// if err != nil {
-	// 	HandleErrors(w, errors.BadRequest, errors.DescriptionBadRequest, http.StatusBadRequest)
-	// 	return
-	// }
-	// artisData[0].LocationFilters = allLocation
+	var loca JsonData
+	allLocation , err := locationFilter()
+	if err != nil {
+		HandleErrors(w, errors.BadRequest, errors.DescriptionBadRequest, http.StatusBadRequest)
+		return
+	}
+
+	loca.LocationFilters = allLocation
+	artisData = append(artisData, loca)
+	
 
 	var buf bytes.Buffer
 	if err := tmpl.ExecuteTemplate(&buf, "index.html", artisData); err != nil {

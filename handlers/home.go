@@ -42,13 +42,15 @@ func GetDataFromJson(w http.ResponseWriter, r *http.Request) {
 		HandleErrors(w, errors.BadRequest, errors.DescriptionBadRequest, http.StatusBadRequest)
 		return
 	}
+	var loca JsonData
 	allLocation , err := locationFilter()
 	if err != nil {
 		HandleErrors(w, errors.BadRequest, errors.DescriptionBadRequest, http.StatusBadRequest)
 		return
 	}
 
-	artisData[0].LocationFilters = allLocation
+	loca.LocationFilters = allLocation
+	artisData = append(artisData, loca)
 
 	var buf bytes.Buffer
 	errr := tmpl.ExecuteTemplate(&buf, "index.html", artisData)
