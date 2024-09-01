@@ -409,3 +409,8 @@ font-size: 14px;
 .content-filter {
   display: flex;
 }
+
+.name-filter {
+  font-size: 20px;
+  text-align: center;
+}
