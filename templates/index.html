@@ -75,6 +75,8 @@
                     <label for="6">6</label>
                     <input type="checkbox" name="members" value="7">
                     <label for="7">7</label>
+                    <input type="checkbox" name="members" value="8">
+                    <label for="8">8</label>
                 </div>
                 <div class="checkbox">
                     <label for="year">from Date (between 1957 and 2025):</label>
@@ -89,15 +91,19 @@
                     <select name="Location-Filter" id="">
 
                         <option value="" >slesct location</option>
-                    {{range $index, $item := .}}
-                    {{if eq $index 0}}
-
+                    {{range .}}
                     {{range .LocationFilters}}
                     <option value="{{ . }}">{{ . }}</option>
                     {{end}}
                     {{end}}
-                    {{end}}
                 </select>
+                </div>
+                <div class="checkbox">
+                    <label for="from-first-album">from album:</label>
+                    <input type="date" name="from-first-album">
+                    
+                    <label for="to-first-album">to album:</label>
+                    <input type="date" name="to-first-album">
                 </div>
                 <button type="submit">Apply Filters</button>
             </form>
