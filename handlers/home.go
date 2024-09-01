@@ -2,11 +2,11 @@ package Groupie_tracker
 
 import (
 	"bytes"
+	"encoding/json"
 	"fmt"
 	"net/http"
 	"os"
 	"path/filepath"
-	"strings"
 	"text/template"
 )
 
@@ -43,7 +43,7 @@ func GetDataFromJson(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	var loca JsonData
-	allLocation , err := locationFilter()
+	allLocation, err := locationFilter()
 	if err != nil {
 		HandleErrors(w, errors.BadRequest, errors.DescriptionBadRequest, http.StatusBadRequest)
 		return
@@ -68,15 +68,29 @@ func GetDataFromJson(w http.ResponseWriter, r *http.Request) {
 }
 
 func locationFilter() ([]string, error) {
-	file, errw := os.ReadFile("location.txt")
-	if errw != nil {
-		return nil , fmt.Errorf("erro from reading file : %w",errw)
+	var location filter
+
+	resp, err := http.Get("https://groupietrackers.herokuapp.com/api/locations")
+	if err != nil {
+		return nil, fmt.Errorf("invalid location: %v", err)
 	}
-	file = []byte(strings.ReplaceAll(string(file) , `"` , ""))
-	files := strings.Split(string(file), ",")
-	
-return files ,  nil
-	
+
+	err = json.NewDecoder(resp.Body).Decode(&location)
+	if err != nil {
+		return nil, fmt.Errorf("no results the error is: %s", err)
+	}
+	var res []string
+	s := make(map[string]bool)
+	for _, data := range location.Index {
+		for _, loca := range data.Location {
+			if !s[loca] {
+				s[loca] =true
+				res = append(res, loca)
+			}
+		}
+		
+	}
+	return res, nil
 }
 
 // This function is responsible for handling the individual artist's information page.
