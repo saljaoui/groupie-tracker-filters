@@ -20,23 +20,31 @@ func Filters(w http.ResponseWriter, r *http.Request) {
 		HandleErrors(w, errors.BadRequest, errors.DescriptionBadRequest, http.StatusBadRequest)
 		return
 	}
-
 	fromYear := r.FormValue("from-year")
 	toYear := r.FormValue("to-year")
+
 	fromAlbum := r.FormValue("from-first-album")
 	toAlbum := r.FormValue("to-first-album")
-	LocationFilteer := r.FormValue("Location-Filter")
+
+	if fromAlbum == "" {
+		fromAlbum = "1800-09-08"
+	}
+	if toAlbum == "" {
+		toAlbum = "2025-09-08"
+	}
+
 	members := r.Form["members"]
 	if len(members) == 0 {
 		members = []string{"1", "2", "3", "4", "5", "6", "7", "8"}
 	}
-	
 
 	artisData, err := fromToYear(fromYear, toYear)
 	if err != nil {
 		HandleErrors(w, errors.InternalError, errors.DescriptionInternalError, http.StatusInternalServerError)
 		return
 	}
+
+
 	artisData, err = Members(members, artisData)
 	if err != nil {
 		HandleErrors(w, errors.InternalError, errors.DescriptionInternalError, http.StatusInternalServerError)
@@ -49,10 +57,14 @@ func Filters(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	artisData, err = LocationFilter(LocationFilteer, artisData)
-	if err != nil {
-		HandleErrors(w, errors.InternalError, errors.DescriptionInternalError, http.StatusInternalServerError)
-		return
+
+	LocationFilteer := r.FormValue("Location-Filter")
+	if LocationFilteer != "" {
+		artisData, err = LocationFilter(LocationFilteer, artisData)
+		if err != nil {
+			HandleErrors(w, errors.InternalError, errors.DescriptionInternalError, http.StatusInternalServerError)
+			return
+		}
 	}
 
 	// allLocation, err := locationFilter()
@@ -77,6 +89,7 @@ func Filters(w http.ResponseWriter, r *http.Request) {
 
 func firstAlbum(fromAlbum, toAlbum string, artisData []JsonData) ([]JsonData, error) {
 	var result []JsonData
+	// fmt.Println(artisData)
 
 	fromAlbum = strings.ReplaceAll(fromAlbum, "-", "")
 	toAlbum = strings.ReplaceAll(toAlbum, "-", "")
@@ -95,14 +108,21 @@ func firstAlbum(fromAlbum, toAlbum string, artisData []JsonData) ([]JsonData, er
 
 		t, _ := time.Parse("02-01-2006", data.FirstAlbum)
 		outputDate := t.Format("2006-01-02")
+		
 
 		dataFirstAlbum := strings.ReplaceAll(outputDate, "-", "")
 		dataFirstAlbumInt, err := strconv.Atoi(dataFirstAlbum)
+
 		if err != nil {
 			return nil, fmt.Errorf("invalid 'from' year: %v", err)
 		}
 
 		if dataFirstAlbumInt >= fromAlbumInt && dataFirstAlbumInt <= toAlbumInt {
+			// fmt.Println("fromAlbumInt",fromAlbumInt)
+			// fmt.Println("dataFirstAlbumInt",dataFirstAlbumInt)
+			// fmt.Println(data.Name)
+			// fmt.Println(data.FirstAlbum)
+			// fmt.Println("toAlbumInt",toAlbumInt)
 			result = append(result, data)
 		}
 	}
@@ -161,22 +181,34 @@ func Members(members []string, artisData []JsonData) ([]JsonData, error) {
 	return result, nil
 }
 
-func LocationFilter(LocationFilter string, artisData []JsonData) ([]JsonData, error) {
-	var location Location
-	var result []JsonData
-	for _, data := range artisData {
 
-		resp, err := http.Get(data.Locations)
-		if err != nil {
-			return nil, fmt.Errorf("invalid location: %v", err)
-		}
-		err = json.NewDecoder(resp.Body).Decode(&location)
-		if err != nil {
-			return nil, fmt.Errorf("no results the error is: %s", err)
-		}
-		// fmt.Println(location.Location)
-		for _, f := range location.Location {
-			if LocationFilter == f {
+
+func LocationFilter(LocationFilter string, artisData []JsonData) ([]JsonData, error) {
+	var location filter
+	var result []JsonData
+	resp, err := http.Get("https://groupietrackers.herokuapp.com/api/locations")
+
+	if err != nil {
+		return nil, fmt.Errorf("invalid location: %v", err)
+	}
+
+	err = json.NewDecoder(resp.Body).Decode(&location)
+	if err != nil {
+
+		return nil, fmt.Errorf("no results the error is: %s", err)
+	}
+	var intIhave []int
+	for _, data := range location.Index {
+		for _, s := range data.Location {
+			if s == LocationFilter {
+				intIhave = append(intIhave, data.ID)
+			}
+		} 
+	}
+
+	for _, data := range artisData {
+		for _, i := range intIhave {
+			if i == data.Id {
 				result = append(result, data)
 			}
 		}

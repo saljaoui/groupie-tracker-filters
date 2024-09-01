@@ -55,6 +55,15 @@ type GeocodeResponse struct {
 	Lon string `json:"lon"`
 }
 
+type filter struct {
+	Index []Locations `json:"index"`
+}
+
+type Locations struct {
+	ID       int      `json:"id"`
+	Location []string `json:"locations"`
+}
+
 // struct for AllMessageErrors jeson data
 type AllMessageErrors struct {
 	NotFound                    string `json:"notfound"`
