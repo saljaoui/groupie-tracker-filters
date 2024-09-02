@@ -84,11 +84,10 @@ func locationFilter() ([]string, error) {
 	for _, data := range location.Index {
 		for _, loca := range data.Location {
 			if !s[loca] {
-				s[loca] =true
+				s[loca] = true
 				res = append(res, loca)
 			}
 		}
-		
 	}
 	return res, nil
 }
@@ -127,6 +126,11 @@ func HandlerShowRelation(w http.ResponseWriter, r *http.Request) {
 
 // This function is responsible for serving the CSS files for the application.
 func HandleStyle(w http.ResponseWriter, r *http.Request) {
+	defer func() {
+		if err := recover(); err != nil {
+			HandleErrors(w, errors.NotFound, errors.DescriptionNotFound, http.StatusNotFound)
+		}
+	}()
 	path := r.URL.Path[len("/styles"):]
 
 	fullpath := filepath.Join("src", path)
@@ -153,5 +157,4 @@ func HandleErrors(w http.ResponseWriter, message, description string, code int) 
 	}
 	w.WriteHeader(code)
 	tmpl.ExecuteTemplate(w, "errors.html", errorsMessage)
-
 }
