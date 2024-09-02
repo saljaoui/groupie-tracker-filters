@@ -494,35 +494,3 @@ select:hover {
   outline: none;
   box-shadow: 0 0 5px rgba(24, 24, 24, 0.5);
 }
-
-
-input[type="submit"] {
-  background-color: #4CAF50; /* Background color */
-  border: none; /* Remove default border */
-  color: white; /* Text color */
-  padding: 15px 32px; /* Padding */
-  text-align: center; /* Text alignment */
-  text-decoration: none; /* Remove underline */
-  display: inline-block; /* Display as inline block */
-  font-size: 16px; /* Font size */
-  margin: 4px 2px; /* Margin */
-  cursor: pointer; /* Pointer cursor on hover */
-  border-radius: 4px; /* Rounded corners */
-  transition: background-color 0.3s ease, transform 0.2s ease; /* Transition effects */
-}
-
-/* Hover state */
-input[type="submit"]:hover {
-  background-color: #45a049; /* Darker background on hover */
-}
-
-/* Active state */
-input[type="submit"]:active {
-  transform: scale(0.98); /* Slightly reduce size on click */
-}
-
-/* Focus state */
-input[type="submit"]:focus {
-  outline: none; /* Remove default focus outline */
-  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5); /* Add shadow for focus */
-}
