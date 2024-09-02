@@ -152,8 +152,6 @@ func HandleErrors(w http.ResponseWriter, message, description string, code int) 
 		Code:        code,
 	}
 	w.WriteHeader(code)
-	err := tmpl.ExecuteTemplate(w, "errors.html", errorsMessage)
-	if err != nil {
-		http.Error(w, "Error 500 Internal Server Error", http.StatusInternalServerError)
-	}
+	tmpl.ExecuteTemplate(w, "errors.html", errorsMessage)
+
 }
