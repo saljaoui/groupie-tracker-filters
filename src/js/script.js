@@ -1,12 +1,18 @@
-
-
 let loadMore = document.querySelector('#load-more');
 let loadLess = document.querySelector('#Load-less');
 let btnfilter=document.querySelector('#filter-header');
 let filter=document.querySelector('.filters-artist');
 
+let clickee = 0;
 btnfilter.addEventListener("click",()=>{
-    filter.style.display='block'
+    if (clickee === 0) {
+        filter.style.display='block'
+        clickee = 1
+    }
+    else if (clickee === 1) {
+        filter.style.display='none'
+        clickee = 0
+    }
   })
 
 let currentItem = 24;
