@@ -2,6 +2,13 @@
 
 let loadMore = document.querySelector('#load-more');
 let loadLess = document.querySelector('#Load-less');
+let btnfilter=document.querySelector('#filter-header');
+let filter=document.querySelector('.filters-artist');
+
+btnfilter.addEventListener("click",()=>{
+    filter.style.display='block'
+  })
+
 let currentItem = 24;
 
 loadMore.onclick = () => {
@@ -40,3 +47,4 @@ document.getElementById('from-year').addEventListener('input', function() {
   document.getElementById('to-year').addEventListener('input', function() {
     document.getElementById('to-yearValue').textContent = this.value;
   });
+

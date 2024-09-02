@@ -311,8 +311,8 @@ a {
   border-radius: 10px;
   padding: 10px 22px 22px 22px;
   overflow: scroll;
+  display: none;
 }
-
 .content-filter {
   display: flex;
 }
