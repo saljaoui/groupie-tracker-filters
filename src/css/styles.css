@@ -431,6 +431,10 @@ a {
 
 }
 
+.filters-artist span {
+  font-size: 13px;
+}
+
 .pop {
   background-color: var(--header-border-color);
   height: 1px;
@@ -439,6 +443,7 @@ a {
 }
 
 .all-content {
+  font-family: "Poppins", sans-serif;
   display: flex;
   justify-content: space-evenly;
 }
@@ -447,4 +452,45 @@ a {
   justify-content: center;
   display: flex;
   margin-top: 25px;
+}
+
+input[type="date"] {
+  padding: 2px;
+  border: 2px solid var(--header-border-color);
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  font-size: 11px;
+  color: #333;
+}
+input[type="date"]:hover {
+  box-shadow: 0 0 5px rgba(24, 24, 24, 0.5);
+}
+
+/* Focus state */
+input[type="date"]:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(24, 24, 24, 0.5);
+}
+
+
+
+select {
+  padding: 8px;
+  border-radius: 15px;
+  background-color: #f9f9f9;
+  color: #333;
+  font-size: 15px;
+  cursor: pointer;
+  width: 100%;
+  border: none;
+}
+
+option {
+  background-color: #f9f9f9; 
+  color: #333; 
+}
+
+select:hover {
+  outline: none;
+  box-shadow: 0 0 5px rgba(24, 24, 24, 0.5);
 }
