@@ -33,7 +33,7 @@
     <div class="filters-artist">
         <div class="content-filter">
 
-            
+
 
 
 
@@ -41,7 +41,9 @@
                 <div>
                     <h2 class="name-filter">FILTERS</h2>
                 </div>
-                <div class="pop" ></div>
+                <div class="pop"></div>
+                <div class="all-content" >
+                <div class="content-filters" >
                 <div>
                     <h2>Number of Members:</h2>
                     <input type="checkbox" name="members" value="1">
@@ -62,7 +64,7 @@
                     <label for="8">8</label>
                 </div>
                 <div>
-                    <h2>Select Date Range</h2>
+                    <h2>Select Date Range:</h2>
                     <label for="year">from:</label>
                     <input type="range" id="from-year" name="from-year" value="1957" min="1957" max="2025">
                     <span id="from-yearValue">1957</span>
@@ -72,13 +74,14 @@
                     <span id="to-yearValue">2025</span>
 
                 </div>
-
+            </div>
+                <div class="content-filters" >
                 <div>
                     <h2>Select Album Date Range:</h2>
-                    <label for="from-first-album">From album:</label>
+                    <label for="from-first-album">From:</label>
                     <input type="date" name="from-first-album">
 
-                    <label for="to-first-album">To album:</label>
+                    <label for="to-first-album">To:</label>
                     <input type="date" name="to-first-album">
                 </div>
 
@@ -95,8 +98,12 @@
                     </select>
 
                 </div>
-
-                <button type="submit">Apply Filters</button>
+            </div>
+        </div>
+        <div class="apply">
+            <button  type="submit">Apply Filters</button>
+        </div>
+                
             </form>
         </div>
     </div>
