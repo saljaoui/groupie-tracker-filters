@@ -295,103 +295,7 @@ a {
   display: none;
 }
 
-/* Media Queries */
-@media (max-width: 1024px) {
-  html {
-    font-size: 55%;
-  }
-
-  .header {
-    padding: 1.5rem 2%;
-  }
-
-  .cards {
-    padding: 0 2%;
-  }
-
-  .card {
-    width: 160px;
-    height: 220px;
-  }
-
-  #text {
-    font-size: 7rem;
-  }
-}
-
-@media (max-width: 768px) {
-  html {
-    font-size: 50%;
-  }
-
-  .search-artists {
-    width: 90%;
-    right: 2rem;
-  }
-
-  .card {
-    width: 140px;
-    height: 200px;
-  }
-
-  #text {
-    font-size: 5rem;
-  }
-
-  .container p {
-    max-width: 70%;
-  }
-
-  .names {
-    font-size: 1.5rem;
-  }
-}
-
-@media (max-width: 450px) {
-  html {
-    font-size: 45%;
-  }
-
-  .header {
-    padding: 1rem;
-  }
-
-  .logoSA {
-    height: 1.5rem;
-  }
-
-  .search-artists {
-    width: 90%;
-    right: 1rem;
-  }
-
-  .card {
-    width: 120px;
-    height: 180px;
-  }
-
-  #text {
-    font-size: 3rem;
-  }
-
-  .container p {
-    max-width: 90%;
-  }
-
-  .iconsContact i {
-    font-size: 2rem;
-  }
-
-  .names {
-    font-size: 1.3rem;
-  }
-}
-
-@media (max-width: 278px) {
-  .header .navbar {
-    display: none;
-  }
-}
+/* filter */
 
 .filters-artist {
 
@@ -406,6 +310,7 @@ a {
   margin-left: 5%;
   border-radius: 10px;
   padding: 10px 22px 22px 22px;
+  overflow: scroll;
 }
 
 .content-filter {
@@ -417,9 +322,7 @@ a {
   text-align: center;
 }
 
-#filterForm {
-  width: 100%;
-}
+
 
 .filters-artist label {
   font-size: 12px;
@@ -431,8 +334,13 @@ a {
 
 }
 
+
 .filters-artist span {
   font-size: 13px;
+}
+
+#filterForm {
+  width: 100%;
 }
 
 .pop {
@@ -507,3 +415,134 @@ cursor: pointer;
 .content-filters input {
   cursor: pointer;
 }
+
+
+
+/* Media Queries */
+@media (max-width: 1024px) {
+  html {
+    font-size: 55%;
+  }
+
+  .header {
+    padding: 1.5rem 2%;
+  }
+
+  .cards {
+    padding: 0 2%;
+  }
+
+  .card {
+    width: 160px;
+    height: 220px;
+  }
+
+  #text {
+    font-size: 7rem;
+  }
+}
+
+@media (max-width: 768px) {
+
+  
+  html {
+    font-size: 50%;
+  }
+
+  .search-artists {
+    width: 90%;
+    right: 2rem;
+  }
+
+  .card {
+    width: 140px;
+    height: 200px;
+  }
+
+  #text {
+    font-size: 5rem;
+  }
+
+  .container p {
+    max-width: 70%;
+  }
+
+  .names {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 450px) {
+  html {
+    font-size: 45%;
+  }
+  select {
+    padding: 6px;
+    font-size: 10px;
+  }
+  input[type="date"] {
+    font-size: 8px;
+  }
+  .submit-apply {
+    padding: 8px 11px;
+    font-size: 10px;
+  }
+
+  .name-filter {
+    font-size: 10px;
+  }
+  
+  .filters-artist label {
+    font-size: 10px;
+  }
+  
+  .filters-artist h2 {
+    font-size: 10px;
+  }
+  
+  
+  .filters-artist span {
+    font-size: 10px;
+  }
+
+  .header {
+    padding: 1rem;
+  }
+
+  .logoSA {
+    height: 1.5rem;
+  }
+
+  .search-artists {
+    width: 90%;
+    right: 1rem;
+  }
+
+  .card {
+    width: 120px;
+    height: 180px;
+  }
+
+  #text {
+    font-size: 3rem;
+  }
+
+  .container p {
+    max-width: 90%;
+  }
+
+  .iconsContact i {
+    font-size: 2rem;
+  }
+
+  .names {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 278px) {
+  .header .navbar {
+    display: none;
+  }
+}
+
