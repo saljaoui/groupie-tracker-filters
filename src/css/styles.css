@@ -473,16 +473,24 @@ cursor: pointer;
 }
 
 @media (max-width: 450px) {
+
   html {
     font-size: 45%;
   }
+
+  .all-content {
+    display: block;
+  }
+
   select {
     padding: 6px;
     font-size: 10px;
   }
+
   input[type="date"] {
     font-size: 8px;
   }
+
   .submit-apply {
     padding: 8px 11px;
     font-size: 10px;
