@@ -414,3 +414,20 @@ font-size: 14px;
   font-size: 20px;
   text-align: center;
 }
+#filterForm {
+  width: 100%;
+}
+.filters-artist label {
+  font-size: 12px;
+}
+.filters-artist h2 {
+  font-size: 15px;
+  margin: 12px 0;
+
+}
+.pop {
+  background-color:var(--header-border-color);
+  height: 1px;
+  width: 100%;
+  margin: 15px 0px;
+}

@@ -41,8 +41,9 @@
                 <div>
                     <h2 class="name-filter">FILTERS</h2>
                 </div>
+                <div class="pop" ></div>
                 <div>
-                    <h2>N Members:</h2>
+                    <h2>Number of Members:</h2>
                     <input type="checkbox" name="members" value="1">
                     <label for="1">1</label>
                     <input type="checkbox" name="members" value="2">
@@ -61,28 +62,31 @@
                     <label for="8">8</label>
                 </div>
                 <div>
-                    <label for="year">from Date (between 1957 and 2025):</label>
+                    <h2>Select Date Range</h2>
+                    <label for="year">from:</label>
                     <input type="range" id="from-year" name="from-year" value="1957" min="1957" max="2025">
                     <span id="from-yearValue">1957</span>
 
-                    <label for="year">| to Date (between 1957 and 2025):</label>
+                    <label for="year">| to:</label>
                     <input type="range" id="to-year" name="to-year" value="2025" min="1957" max="2025">
                     <span id="to-yearValue">2025</span>
 
                 </div>
 
                 <div>
-                    <label for="from-first-album">from album:</label>
+                    <h2>Select Album Date Range:</h2>
+                    <label for="from-first-album">From album:</label>
                     <input type="date" name="from-first-album">
 
-                    <label for="to-first-album">to album:</label>
+                    <label for="to-first-album">To album:</label>
                     <input type="date" name="to-first-album">
                 </div>
 
                 <div>
+                    <h2>Select Location</h2>
                     <select name="Location-Filter" id="">
 
-                        <option value="">slesct location</option>
+                        <option value="">slesct location:</option>
                         {{range .}}
                         {{range .LocationFilters}}
                         <option value="{{ . }}">{{ . }}</option>
