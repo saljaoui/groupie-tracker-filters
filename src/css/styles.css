@@ -494,3 +494,16 @@ select:hover {
   outline: none;
   box-shadow: 0 0 5px rgba(24, 24, 24, 0.5);
 }
+.submit-apply {
+background: white;
+border-radius: 15px;
+padding: 10px 15px;
+border: none;
+cursor: pointer;
+}
+.submit-apply:hover {
+  box-shadow: 0 0 5px rgba(24, 24, 24, 0.5);
+}
+.content-filters input {
+  cursor: pointer;
+}

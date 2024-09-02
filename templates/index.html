@@ -32,11 +32,6 @@
     </header>
     <div class="filters-artist">
         <div class="content-filter">
-
-
-
-
-
             <form id="filterForm" action="/filters/#artists" method="get">
                 <div>
                     <h2 class="name-filter">FILTERS</h2>
@@ -66,11 +61,11 @@
                 <div>
                     <h2>Select Date Range (From -> To):</h2>
                     <label for="year"></label>
-                    <input type="range" id="from-year" name="from-year" value="1957" min="1957" max="2025">
+                    <input class="range" type="range" id="from-year" name="from-year" value="1957" min="1957" max="2025">
                     <span id="from-yearValue">1957</span>
 
                     <label for="year"></label>
-                    <input type="range" id="to-year" name="to-year" value="2025" min="1957" max="2025">
+                    <input class="range" type="range" id="to-year" name="to-year" value="2025" min="1957" max="2025">
                     <span id="to-yearValue">2025</span>
 
                 </div>
@@ -86,10 +81,10 @@
                 </div>
 
                 <div>
-                    <h2>Select Location</h2>
+                    <h2>Select Location:</h2>
                     <select name="Location-Filter" id="">
 
-                        <option value="">slesct location:</option>
+                        <option value="">Locations:</option>
                         {{range .}}
                         {{range .LocationFilters}}
                         <option value="{{ . }}">{{ . }}</option>
@@ -101,7 +96,7 @@
             </div>
         </div>
         <div class="apply">
-            <button  type="submit">Apply Filters</button>
+            <button class="submit-apply" type="submit">Apply Filters</button>
         </div>
                 
             </form>
